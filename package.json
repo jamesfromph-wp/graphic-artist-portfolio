@@ -1,15 +1,20 @@
 {
   "name": "graphic-artist-portfolio",
+  "author": {
+    "email": "jamesmalatabon@gmail.com",
+    "name": "James Malatabon"
+  },
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-p type-check \"build-only {@}\" -- && rimraf docs && mkdirp docs && cp -r dist/. docs/",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "deploy": "npm run format && npm run build && git add . && git commit -m \"chore: deploy current build\" && git push origin main"
   },
   "dependencies": {
     "vue": "^3.3.4",
@@ -26,9 +31,12 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
+    "mkdirp": "^3.0.1",
     "npm-run-all2": "^6.1.1",
     "postcss": "^8.4.32",
+    "postcss-nesting": "^12.0.1",
     "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
     "tailwindcss": "^3.3.5",
     "typescript": "~5.2.0",
     "vite": "^4.4.11",

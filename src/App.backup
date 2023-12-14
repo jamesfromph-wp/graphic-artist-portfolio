@@ -1,50 +1,7 @@
-<script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from 'vue'
-
-const parallaxLayer1 = ref<HTMLElement | null>(null)
-const parallaxLayer2 = ref<HTMLElement | null>(null)
-const parallaxLayer3 = ref<HTMLElement | null>(null)
-
-const handleMouseMove = (event: MouseEvent) => {
-  const mouseX = event.clientX
-  const mouseY = event.clientY
-
-  const centerX = window.innerWidth / 2
-  const centerY = window.innerHeight / 2
-
-  const translateX1 = (centerX - mouseX) / 30
-  const translateY1 = (centerY - mouseY) / 30
-
-  const translateX2 = (centerX - mouseX) / 20
-  const translateY2 = (centerY - mouseY) / 20
-
-  const translateX3 = (centerX - mouseX) / 10
-  const translateY3 = (centerY - mouseY) / 10
-
-  if (parallaxLayer1.value) {
-    parallaxLayer1.value.style.transform = `translate(${translateX1}px, ${translateY1}px)`
-  }
-
-  if (parallaxLayer2.value) {
-    parallaxLayer2.value.style.transform = `translate(${translateX2}px, ${translateY2}px)`
-  }
-
-  if (parallaxLayer3.value) {
-    parallaxLayer3.value.style.transform = `translate(${translateX3}px, ${translateY3}px)`
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('mousemove', handleMouseMove)
-})
-
-onBeforeUnmount(() => {
-  document.removeEventListener('mousemove', handleMouseMove)
-})
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <section class="hero" @mousemove="handleMouseMove">
+  <section class="hero">
     <div class="container mx-auto py-10">
       <div class="relative flex border-t border-s">
         <div
@@ -55,26 +12,9 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="relative basis-1/2 h-[658px]">
-          <img
-            ref="parallaxLayer1"
-            class="absolute top-0"
-            src="./assets/images/mj-orange.png"
-            alt="MJay Molit"
-          />
-
-          <img
-            ref="parallaxLayer2"
-            class="absolute top-0"
-            src="./assets/images/mj-white.png"
-            alt="MJay Molit"
-          />
-
-          <img
-            ref="parallaxLayer3"
-            class="relative"
-            src="./assets/images/mj.png"
-            alt="MJay Molit"
-          />
+          <img src="./assets/images/mj-orange.png" alt="MJay Molit" class="absolute top-0" />
+          <img src="./assets/images/mj-white.png" alt="MJay Molit" class="absolute top-0" />
+          <img src="./assets/images/mj.png" alt="MJay Molit" class="relative" />
         </div>
 
         <div class="basis-1/2 flex flex-col items-center justify-center px-5">
